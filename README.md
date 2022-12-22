@@ -1,6 +1,6 @@
 # riverpod_firebase_practice
 
-A new Flutter project.
+riverpodとfirebaseの練習
 
 ## Getting Started
 
