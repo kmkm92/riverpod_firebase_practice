@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>701622809287-lqioqrh4l7sjv1s7ga4lgc0jmkbbr3nd.apps.googleusercontent.com</string>
+	<string>759519696680-evcdotfirqkoa3j6fb539rsdbmvcjk3k.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.701622809287-lqioqrh4l7sjv1s7ga4lgc0jmkbbr3nd</string>
+	<string>com.googleusercontent.apps.759519696680-evcdotfirqkoa3j6fb539rsdbmvcjk3k</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBW7Rva24kV0LTLWUtFjULPss9xmvtv4y0</string>
+	<string>AIzaSyAyGj-YMlVqao_VplwgfyArUcqVMFxu9XA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>701622809287</string>
+	<string>759519696680</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.riverpodFirebasePractice</string>
 	<key>PROJECT_ID</key>
-	<string>chatapp-82171</string>
+	<string>riverpod-firebase-practice</string>
 	<key>STORAGE_BUCKET</key>
-	<string>chatapp-82171.appspot.com</string>
+	<string>riverpod-firebase-practice.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:701622809287:ios:aa23eecc8e588be8f144e2</string>
+	<string>1:759519696680:ios:91810eae21da945437221d</string>
 </dict>
 </plist>

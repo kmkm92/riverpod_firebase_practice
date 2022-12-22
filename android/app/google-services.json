@@ -29,6 +29,13 @@
             {
               "client_id": "759519696680-9q4st2aq2trr37lo51iqcumkrui02af2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "759519696680-evcdotfirqkoa3j6fb539rsdbmvcjk3k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.riverpodFirebasePractice"
+              }
             }
           ]
         }
