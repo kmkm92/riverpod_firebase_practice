@@ -14,7 +14,7 @@ class ReadPage2 extends ConsumerWidget {
         ref.watch(firebaseMemos2Provider);
     // textProviderを呼び出す定数を定義
     // final controllerProvider = ref.watch(textProvider);
-    // final listProvider = ref.watch(appStateProviderList);
+    final checkboxProvider = ref.watch(appStateProvider2);
     // print(firebaseMemos);
 
     return Scaffold(
@@ -97,8 +97,13 @@ class ReadPage2 extends ConsumerWidget {
                     activeColor: Colors.blue,
                     title: Text(item.text),
                     controlAffinity: ListTileControlAffinity.leading,
-                    value: false,
-                    onChanged: (e) {},
+                    value: item.check,
+                    onChanged: (e) {
+                      ref
+                          .read(appStateProvider2.notifier)
+                          .handleCheckbox(item.id);
+                      // print(item.check);
+                    },
                   ),
                 ),
               );

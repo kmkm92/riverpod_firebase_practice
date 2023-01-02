@@ -23,6 +23,7 @@ mixin _$Todo2 {
   String get id => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
+  bool get check => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -40,6 +41,7 @@ abstract class $Todo2CopyWith<$Res> {
       {String id,
       String category,
       String text,
+      bool check,
       @TimestampConverter() DateTime? createdAt});
 }
 
@@ -59,6 +61,7 @@ class _$Todo2CopyWithImpl<$Res, $Val extends Todo2>
     Object? id = null,
     Object? category = null,
     Object? text = null,
+    Object? check = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +77,10 @@ class _$Todo2CopyWithImpl<$Res, $Val extends Todo2>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      check: null == check
+          ? _value.check
+          : check // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -92,6 +99,7 @@ abstract class _$$_Todo2CopyWith<$Res> implements $Todo2CopyWith<$Res> {
       {String id,
       String category,
       String text,
+      bool check,
       @TimestampConverter() DateTime? createdAt});
 }
 
@@ -107,6 +115,7 @@ class __$$_Todo2CopyWithImpl<$Res> extends _$Todo2CopyWithImpl<$Res, _$_Todo2>
     Object? id = null,
     Object? category = null,
     Object? text = null,
+    Object? check = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Todo2(
@@ -122,6 +131,10 @@ class __$$_Todo2CopyWithImpl<$Res> extends _$Todo2CopyWithImpl<$Res, _$_Todo2>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      check: null == check
+          ? _value.check
+          : check // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -137,6 +150,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
       {required this.id,
       required this.category,
       required this.text,
+      this.check = false,
       @TimestampConverter() this.createdAt});
 
   factory _$_Todo2.fromJson(Map<String, dynamic> json) =>
@@ -149,12 +163,15 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
   @override
   final String text;
   @override
+  @JsonKey()
+  final bool check;
+  @override
   @TimestampConverter()
   final DateTime? createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Todo2(id: $id, category: $category, text: $text, createdAt: $createdAt)';
+    return 'Todo2(id: $id, category: $category, text: $text, check: $check, createdAt: $createdAt)';
   }
 
   @override
@@ -165,6 +182,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('text', text))
+      ..add(DiagnosticsProperty('check', check))
       ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
@@ -177,13 +195,15 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
+            (identical(other.check, check) || other.check == check) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, category, text, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, category, text, check, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -204,6 +224,7 @@ abstract class _Todo2 implements Todo2 {
       {required final String id,
       required final String category,
       required final String text,
+      final bool check,
       @TimestampConverter() final DateTime? createdAt}) = _$_Todo2;
 
   factory _Todo2.fromJson(Map<String, dynamic> json) = _$_Todo2.fromJson;
@@ -214,6 +235,8 @@ abstract class _Todo2 implements Todo2 {
   String get category;
   @override
   String get text;
+  @override
+  bool get check;
   @override
   @TimestampConverter()
   DateTime? get createdAt;

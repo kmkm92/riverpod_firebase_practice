@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +14,7 @@ class Todo2 with _$Todo2 {
     required String id,
     required String category,
     required String text,
+    @Default(false) bool check,
     @TimestampConverter() DateTime? createdAt,
   }) = _Todo2;
 

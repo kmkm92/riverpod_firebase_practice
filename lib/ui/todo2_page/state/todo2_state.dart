@@ -26,6 +26,7 @@ class AppState2 extends StateNotifier<dynamic> {
       'id': memos2.id,
       'category': category,
       'text': text,
+      'check': false,
       'createdAt': Timestamp.fromDate(DateTime.now())
     });
   }
@@ -42,7 +43,28 @@ class AppState2 extends StateNotifier<dynamic> {
   Future<void> deleteMemo(String id) async {
     await FirebaseFirestore.instance.collection('memos2').doc(id).delete();
   }
+
+  // FireStoreのcheckboxを変えるするメソッド
+  Future<void> handleCheckbox(String id) async {
+    final get_instance =
+        await FirebaseFirestore.instance.collection('memos2').doc(id).get();
+    final now_bool = get_instance.get('check');
+    if (now_bool) {
+      await FirebaseFirestore.instance
+          .collection('memos2')
+          .doc(id)
+          .update({'check': false});
+      // print('ok');
+    } else {
+      await FirebaseFirestore.instance
+          .collection('memos2')
+          .doc(id)
+          .update({'check': true});
+    }
+  }
 }
+
+
 
 // リストの中身などを定義
 // class Todo2 {
