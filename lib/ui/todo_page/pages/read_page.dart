@@ -100,6 +100,7 @@ class ReadPage extends ConsumerWidget {
                                     ref
                                         .read(appStateProvider.notifier)
                                         .deleteMemo(document);
+                                    print(document);
                                   },
                                   icon: const Icon(Icons.delete),
                                 ),

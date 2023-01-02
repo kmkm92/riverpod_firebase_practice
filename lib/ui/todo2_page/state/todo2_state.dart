@@ -20,9 +20,10 @@ class AppState2 extends StateNotifier<dynamic> {
   // FireStoreにデータを追加するメソッド
   Future<void> textAdd(String category, String text) async {
     // _ref.read()と書いて、firebaseProviderを呼び出す
-    final ref = await _ref.read(firebaseProvider).collection('memos2')
-        // createdAtは、FireStoreに作成した時刻をTimestampで保存する
-        .add({
+    final memos2 = _ref.read(firebaseProvider).collection('memos2').doc();
+    // createdAtは、FireStoreに作成した時刻をTimestampで保存する
+    memos2.set({
+      'id': memos2.id,
       'category': category,
       'text': text,
       'createdAt': Timestamp.fromDate(DateTime.now())
@@ -38,40 +39,37 @@ class AppState2 extends StateNotifier<dynamic> {
 //   // }
 
   // FireStoreのデータを削除するメソッド
-  Future<void> deleteMemo(dynamic document) async {
-    await FirebaseFirestore.instance
-        .collection('memos2')
-        .doc(document.id)
-        .delete();
+  Future<void> deleteMemo(String id) async {
+    await FirebaseFirestore.instance.collection('memos2').doc(id).delete();
   }
 }
 
 // リストの中身などを定義
-class Todo2 {
-  String category;
-  Timestamp createdAt;
-  String text;
+// class Todo2 {
+//   String category;
+//   Timestamp createdAt;
+//   String text;
 
-  Todo2({required this.category, required this.createdAt, required this.text});
+//   Todo2({required this.category, required this.createdAt, required this.text});
 
-  // List<Todo2> todo2 = [];
+//   // List<Todo2> todo2 = [];
 
-  // factoryを利用する場合、インスタンスは処理内で作成して返却する必要がある
-  // 今回は引数(Firestoreの情報)からインスタンスを生成する
-  // また引数については、処理内で再設定されないようfinalを追記
-  factory Todo2.toModel(final Map<String, dynamic> data) {
-    //　ここでインスタンスを生成し返却する
-    return Todo2(
-        category: data['category'],
-        createdAt: data['createdAt'],
-        text: data['text']);
-  }
-  // toJsonメソッドは
-  // 呼び出されるインスタンスの各フィールド値をMap形式に変換します
-  Map<String, Object?> toJson() {
-    return {'category': category, 'createdAt': createdAt, 'text': text};
-  }
-}
+//   // factoryを利用する場合、インスタンスは処理内で作成して返却する必要がある
+//   // 今回は引数(Firestoreの情報)からインスタンスを生成する
+//   // また引数については、処理内で再設定されないようfinalを追記
+//   factory Todo2.toModel(final Map<String, dynamic> data) {
+//     //　ここでインスタンスを生成し返却する
+//     return Todo2(
+//         category: data['category'],
+//         createdAt: data['createdAt'],
+//         text: data['text']);
+//   }
+//   // toJsonメソッドは
+//   // 呼び出されるインスタンスの各フィールド値をMap形式に変換します
+//   Map<String, Object?> toJson() {
+//     return {'category': category, 'createdAt': createdAt, 'text': text};
+//   }
+// }
 
 // // 外部からStateNotifierを呼び出せるようになるProvider
 // final appStateProviderList =

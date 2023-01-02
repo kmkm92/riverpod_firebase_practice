@@ -20,6 +20,7 @@ Todo2 _$Todo2FromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Todo2 {
+  String get id => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @TimestampConverter()
@@ -36,7 +37,8 @@ abstract class $Todo2CopyWith<$Res> {
       _$Todo2CopyWithImpl<$Res, Todo2>;
   @useResult
   $Res call(
-      {String category,
+      {String id,
+      String category,
       String text,
       @TimestampConverter() DateTime? createdAt});
 }
@@ -54,11 +56,16 @@ class _$Todo2CopyWithImpl<$Res, $Val extends Todo2>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? text = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -82,7 +89,8 @@ abstract class _$$_Todo2CopyWith<$Res> implements $Todo2CopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String category,
+      {String id,
+      String category,
       String text,
       @TimestampConverter() DateTime? createdAt});
 }
@@ -96,11 +104,16 @@ class __$$_Todo2CopyWithImpl<$Res> extends _$Todo2CopyWithImpl<$Res, _$_Todo2>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? text = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Todo2(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -121,13 +134,16 @@ class __$$_Todo2CopyWithImpl<$Res> extends _$Todo2CopyWithImpl<$Res, _$_Todo2>
 @JsonSerializable()
 class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
   const _$_Todo2(
-      {required this.category,
+      {required this.id,
+      required this.category,
       required this.text,
       @TimestampConverter() this.createdAt});
 
   factory _$_Todo2.fromJson(Map<String, dynamic> json) =>
       _$$_Todo2FromJson(json);
 
+  @override
+  final String id;
   @override
   final String category;
   @override
@@ -138,7 +154,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Todo2(category: $category, text: $text, createdAt: $createdAt)';
+    return 'Todo2(id: $id, category: $category, text: $text, createdAt: $createdAt)';
   }
 
   @override
@@ -146,6 +162,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Todo2'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('text', text))
       ..add(DiagnosticsProperty('createdAt', createdAt));
@@ -156,6 +173,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Todo2 &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
@@ -165,7 +183,7 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, category, text, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, category, text, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -183,12 +201,15 @@ class _$_Todo2 with DiagnosticableTreeMixin implements _Todo2 {
 
 abstract class _Todo2 implements Todo2 {
   const factory _Todo2(
-      {required final String category,
+      {required final String id,
+      required final String category,
       required final String text,
       @TimestampConverter() final DateTime? createdAt}) = _$_Todo2;
 
   factory _Todo2.fromJson(Map<String, dynamic> json) = _$_Todo2.fromJson;
 
+  @override
+  String get id;
   @override
   String get category;
   @override

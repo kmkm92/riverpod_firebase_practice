@@ -9,6 +9,7 @@ part 'todo2_model.g.dart';
 @freezed
 class Todo2 with _$Todo2 {
   const factory Todo2({
+    required String id,
     required String category,
     required String text,
     @TimestampConverter() DateTime? createdAt,

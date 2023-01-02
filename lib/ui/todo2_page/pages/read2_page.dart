@@ -83,12 +83,23 @@ class ReadPage2 extends ConsumerWidget {
                   horizontal: 10,
                   vertical: 2,
                 ),
-                child: CheckboxListTile(
-                  activeColor: Colors.blue,
-                  title: Text(item.text),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  value: false,
-                  onChanged: (e) {},
+                child: Dismissible(
+                  key: ValueKey(item.id),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) async {
+                    ref.read(appStateProvider2.notifier).deleteMemo(item.id);
+                    print('id:' + item.id + ' を削除');
+                  },
+                  background: Container(
+                    color: Colors.red,
+                  ),
+                  child: CheckboxListTile(
+                    activeColor: Colors.blue,
+                    title: Text(item.text),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: false,
+                    onChanged: (e) {},
+                  ),
                 ),
               );
             },
@@ -99,20 +110,6 @@ class ReadPage2 extends ConsumerWidget {
             floatingHeader: false,
             order: GroupedListOrder.DESC,
           );
-
-          /* ListView.builder(
-            itemCount: listProvider.length,
-            itemBuilder: (BuildContext context, int item) {
-              Todo2 todoList = listProvider[item];
-              print(listProvider);
-              return Container(
-                child: ListTile(
-                  subtitle: Text('カテゴリー: ${todoList.category}'),
-                  title: Text('テキスト: ${todoList.text}'),
-                ),
-              );
-            },
-          ); */
         },
 
         // データの読み込み中（FireStoreではあまり発生しない）
