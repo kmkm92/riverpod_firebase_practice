@@ -46,10 +46,10 @@ class AppState2 extends StateNotifier<dynamic> {
 
   // FireStoreのcheckboxを変えるするメソッド
   Future<void> handleCheckbox(String id) async {
-    final get_instance =
+    final getInstance =
         await FirebaseFirestore.instance.collection('memos2').doc(id).get();
-    final now_bool = get_instance.get('check');
-    if (now_bool) {
+    final nowBool = getInstance.get('check');
+    if (nowBool) {
       await FirebaseFirestore.instance
           .collection('memos2')
           .doc(id)
@@ -61,6 +61,7 @@ class AppState2 extends StateNotifier<dynamic> {
           .doc(id)
           .update({'check': true});
     }
+    print('id:' + getInstance.id + 'のチェックボックスを変更');
   }
 }
 
