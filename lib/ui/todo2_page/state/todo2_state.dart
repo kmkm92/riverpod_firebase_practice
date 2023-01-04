@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_firebase_practice/ui/todo2_page/pages/add2_page.dart';
@@ -17,10 +19,19 @@ class AppState2 extends StateNotifier<dynamic> {
   final Ref _ref;
   // superは、親クラスのコンストクラスターを呼び出す
   AppState2(this._ref) : super([]);
+
   // FireStoreにデータを追加するメソッド
   Future<void> textAdd(String category, String text) async {
-    // _ref.read()と書いて、firebaseProviderを呼び出す
-    final memos2 = _ref.read(firebaseProvider).collection('memos2').doc();
+    // _ref.read()と書いて、firebaseProviderを呼び出すtest@test.jp
+    // final currentUid = FirebaseAuth.instance.currentUser?.uid;
+    final uid = _ref.read(currentUid);
+    print(currentUid);
+    final memos2 = _ref
+        .read(firebaseProvider)
+        .collection('users')
+        .doc(uid)
+        .collection('memos2')
+        .doc();
     // createdAtは、FireStoreに作成した時刻をTimestampで保存する
     memos2.set({
       'id': memos2.id,
@@ -41,22 +52,37 @@ class AppState2 extends StateNotifier<dynamic> {
 
   // FireStoreのデータを削除するメソッド
   Future<void> deleteMemo(String id) async {
-    await FirebaseFirestore.instance.collection('memos2').doc(id).delete();
+    final uid = _ref.read(currentUid);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('memos')
+        .doc(id)
+        .delete();
   }
 
   // FireStoreのcheckboxを変えるするメソッド
   Future<void> handleCheckbox(String id) async {
-    final getInstance =
-        await FirebaseFirestore.instance.collection('memos2').doc(id).get();
+    final uid = _ref.read(currentUid);
+    final getInstance = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('memos2')
+        .doc(id)
+        .get();
     final nowBool = getInstance.get('check');
     if (nowBool) {
       await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
           .collection('memos2')
           .doc(id)
           .update({'check': false});
       // print('ok');
     } else {
       await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
           .collection('memos2')
           .doc(id)
           .update({'check': true});

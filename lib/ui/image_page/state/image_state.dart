@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_firebase_practice/utils/firebase_provider.dart';
 import '/ui/image_page/state/image_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -23,7 +24,11 @@ final imageUrlProvider = StateProvider /* <String> */ ((ref) {
 
 // 一覧取得
 final firebaseImageProvider = StreamProvider((ref) {
-  final collection = FirebaseFirestore.instance.collection('image_test');
+  final uid = ref.watch(currentUid);
+  final collection = FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .collection('image_test');
   // データ（Map型）を取得
   final stream = collection.snapshots().map(
         // CollectionのデータからUserクラスを生成する
@@ -99,7 +104,12 @@ class ImageAdd extends StateNotifier<dynamic> {
   // superは、親クラスのコンストクラスターを呼び出す
   ImageAdd(this._ref) : super([]);
   Future imageAddFirestore(String title, String text, String imageUrl) async {
-    final images = FirebaseFirestore.instance.collection('image_test').doc();
+    final uid = _ref.watch(currentUid);
+    final images = FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('image_test')
+        .doc();
     // createdAtは、FireStoreに作成した時刻をTimestampで保存する
     images.set({
       'id': images.id,

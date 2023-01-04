@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_firebase_practice/ui/todo2_page/pages/add2_page.dart';
@@ -34,11 +35,21 @@ final firebaseMemosProvider = StreamProvider.autoDispose((_) {
 
 // final usersStreamProvider = StreamProvider<List<Todo2>>((ref) {
 final firebaseMemos2Provider = StreamProvider((ref) {
-  final collection = FirebaseFirestore.instance.collection('memos2');
+  final uid = ref.read(currentUid);
+  final collection = FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .collection('memos2');
   // データ（Map型）を取得
   final stream = collection.snapshots().map(
         // CollectionのデータからUserクラスを生成する
         (e) => e.docs.map((e) => Todo2.fromJson(e.data())).toList(),
       );
+
   return stream;
+});
+
+// final currentUid = FirebaseAuth.instance.currentUser?.uid;
+final currentUid = Provider((ref) {
+  return FirebaseAuth.instance.currentUser?.uid;
 });

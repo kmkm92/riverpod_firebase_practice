@@ -76,7 +76,7 @@ class ReadPage2 extends ConsumerWidget {
             ),
             itemBuilder: (context, item) {
               // Todo2 todoList = listProvider[item];
-              // print(item);
+
               return Card(
                 elevation: 3.0,
                 margin: EdgeInsets.symmetric(
